@@ -30,6 +30,7 @@
     <div class="nav__menu" id="menu">
       <a href="#apropos">À propos</a>
       <a href="#cours">Cours</a>
+      <a href="#equipe">Équipe</a>
       <a href="#planning">Planning</a>
       <a href="#tarifs">Tarifs</a>
       <a href="#contact">Contact</a>
@@ -130,15 +131,30 @@
         <div class="space space--dark"><span class="space__ico">🕌</span><h3>Prière &amp; <i>vestiaires</i></h3><p>Un espace de prière et un très grand vestiaire sécurisé à ta disposition.</p></div>
         <figure class="space space--photo"><img src="assets/tiktok/delta.jpg" alt="Coach Delta, pro-instructeur" loading="lazy"><figcaption><b>Pro-instructeurs</b>Coach Delta &amp; l'équipe</figcaption></figure>
       </div>
-      <div class="coaches">
-        <p class="kicker">L'équipe</p>
-        <ul>
-          <li><span>D</span><div><b>Coach Delta</b>Pro-instructeur élite · Body Combat, Body Pump</div></li>
-          <li><span>W</span><div><b>Coach Weuz</b>Body Attack · Body Combat</div></li>
-          <li><span>A</span><div><b>Coach Asta</b>Aérobie · Espace femmes</div></li>
-          <li><span>C</span><div><b>Cheikh Mour Talla</b>Musculation</div></li>
-          <li><span>M</span><div><b>Coach Mbaye</b>Gym bâton</div></li>
-        </ul>
+      <div class="coaches" id="equipe">
+        <div class="coaches__head"><h2 class="h2">Notre <i>équipe</i> de coachs</h2><p>Des pro-instructeurs et des coachs passionnés pour t'accompagner à chaque séance.</p></div>
+        <div class="coaches__grid">
+          <article class="coach">
+            <img src="assets/coachs/delta.jpg" alt="Coach Delta" loading="lazy" style="object-position: center 30%">
+            <div class="coach__info"><span class="coach__role">Pro-instructeur élite</span><h3>Coach Delta</h3><p>Body Combat · Body Pump</p><a href="https://www.tiktok.com/@coach_delta" target="_blank" rel="noopener">@coach_delta</a></div>
+          </article>
+          <article class="coach">
+            <img src="assets/coachs/weuz.jpg" alt="Coach Weuz" loading="lazy" style="object-position: center 25%">
+            <div class="coach__info"><span class="coach__role">Coach</span><h3>Coach Weuz</h3><p>Body Attack · Body Combat</p><a href="https://www.tiktok.com/@coach.weuz2" target="_blank" rel="noopener">@coach.weuz2</a></div>
+          </article>
+          <article class="coach">
+            <img src="assets/coachs/asta.jpg" alt="Coach Asta" loading="lazy" style="object-position: 30% 30%">
+            <div class="coach__info"><span class="coach__role">Coach</span><h3>Coach Asta</h3><p>Aérobie · Espace femmes</p><a href="https://www.tiktok.com/@astasylla62" target="_blank" rel="noopener">@astasylla62</a></div>
+          </article>
+          <article class="coach">
+            <img src="assets/coachs/talla.jpg" alt="Cheikh Mour Talla" loading="lazy" style="object-position: center 20%">
+            <div class="coach__info"><span class="coach__role">Coach</span><h3>Cheikh Mour Talla</h3><p>Musculation</p><a href="https://www.tiktok.com/@cheikh.mour.talla" target="_blank" rel="noopener">@cheikh.mour.talla</a></div>
+          </article>
+          <article class="coach">
+            <img src="assets/coachs/mbaye.jpg" alt="Coach Mbaye" loading="lazy" style="object-position: center 40%">
+            <div class="coach__info"><span class="coach__role">Coach</span><h3>Coach Mbaye</h3><p>Gym bâton</p><a href="https://www.tiktok.com/@coach_mbaye221" target="_blank" rel="noopener">@coach_mbaye221</a></div>
+          </article>
+        </div>
       </div>
     </div>
   </section>
@@ -265,6 +281,19 @@
         <button class="pill pill--black" type="submit">Envoyer via WhatsApp</button>
         <p class="form__msg form__msg--err" id="formError" role="alert"></p>
       </form>
+    </div>
+    <div class="container map">
+      <iframe title="Carte : Ndamatou Fitness à Touba" src="https://maps.google.com/maps?q=Ndamatou%20Fitness%2C%20V42V%2BV26%20Touba&amp;ll=14.8519978,-15.8577066&amp;z=16&amp;hl=fr&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <div class="map__card">
+        <p class="kicker">Nous trouver</p>
+        <h3>Ndamatou Fitness</h3>
+        <p>Touba Ndamatou, à côté de Keur Baye Lahat<br><small>Plus code : V42V+V26, Touba</small></p>
+        <div class="map__actions">
+          <a class="pill pill--yellow" href="https://www.google.com/maps/dir/?api=1&amp;destination=14.8519978,-15.8577066" target="_blank" rel="noopener">Itinéraire</a>
+          <a class="pill pill--black" href="https://www.google.com/maps/place/Ndamatou+Fitness/@14.8519978,-15.8577066,17z" target="_blank" rel="noopener">Google Maps</a>
+        </div>
+        <p class="map__tel"><a href="tel:+221785081212">78 508 12 12</a> · <a href="https://wa.me/221785081212" target="_blank" rel="noopener">WhatsApp</a></p>
+      </div>
     </div>
   </section>
 </main>
