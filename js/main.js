@@ -1,5 +1,7 @@
 // Ndamatou Fitness — interactions
 const WHATSAPP = "221785081212";
+const openWhatsApp = (text) =>
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
 
 // Planning indicatif — à ajuster selon les horaires réels de la salle
 const PLANNING = {
@@ -26,12 +28,26 @@ toggle.addEventListener("click", () => setMenu(!menu.classList.contains("is-open
 menu.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
 
+// Vidéo du hero : pas de lecture auto si l'utilisateur préfère moins d'animations
+const heroVideo = document.querySelector(".hero__video video");
+if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  heroVideo.removeAttribute("autoplay");
+  heroVideo.pause();
+}
+
+// Carrousel
+const carousel = document.getElementById("carousel");
+document.querySelectorAll(".carousel__nav .round").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const step = carousel.querySelector(".photo:not(.photo--wide)").offsetWidth + 16;
+    carousel.scrollBy({ left: step * Number(btn.dataset.dir), behavior: "smooth" });
+  });
+});
+
 // Planning à onglets
 const tabs = document.querySelector(".tabs");
 const schedule = document.getElementById("schedule");
 const days = Object.keys(PLANNING);
-const todayIndex = (new Date().getDay() + 6) % 7; // lundi = 0
-
 function renderDay(day) {
   tabs.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-selected", String(t.dataset.day === day)));
   schedule.innerHTML = PLANNING[day].map(([time, name, coach]) => `
@@ -39,17 +55,34 @@ function renderDay(day) {
 }
 days.forEach((day) => {
   const b = document.createElement("button");
-  b.className = "tab";
-  b.type = "button";
-  b.role = "tab";
+  Object.assign(b, { className: "tab", type: "button", textContent: day });
+  b.setAttribute("role", "tab");
   b.dataset.day = day;
-  b.textContent = day;
   b.addEventListener("click", () => renderDay(day));
   tabs.appendChild(b);
 });
-renderDay(days[todayIndex]);
+renderDay(days[(new Date().getDay() + 6) % 7]); // lundi = 0
 
-// Formulaire -> message WhatsApp pré-rempli
+// Tarifs mensuel / trimestriel
+const billing = document.getElementById("billing");
+billing.addEventListener("click", () => {
+  const quarterly = billing.getAttribute("aria-checked") !== "true";
+  billing.setAttribute("aria-checked", String(quarterly));
+  document.querySelectorAll("[data-m]").forEach((el) => { el.textContent = quarterly ? el.dataset.t : el.dataset.m; });
+});
+
+// Inscription événements -> WhatsApp
+const newsForm = document.getElementById("newsForm");
+const newsMsg = document.getElementById("newsMsg");
+newsForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const tel = document.getElementById("newsTel").value.trim();
+  if (tel.replace(/\D/g, "").length < 9) { newsMsg.textContent = "Entre un numéro valide."; return; }
+  newsMsg.textContent = "Merci ! Envoie le message WhatsApp pour confirmer.";
+  openWhatsApp(`Bonjour Ndamatou Fitness, je veux être informé·e des prochaines Master Class et événements. Mon numéro : ${tel}`);
+});
+
+// Formulaire de contact -> message WhatsApp pré-rempli
 const form = document.getElementById("form");
 const error = document.getElementById("formError");
 form.addEventListener("submit", (e) => {
@@ -57,28 +90,24 @@ form.addEventListener("submit", (e) => {
   const data = new FormData(form);
   const nom = data.get("nom").trim();
   const tel = data.get("tel").trim();
-  if (!nom || !tel) {
-    error.textContent = "Merci d'indiquer ton nom et ton numéro de téléphone.";
-    return;
-  }
+  if (!nom || !tel) { error.textContent = "Merci d'indiquer ton nom et ton numéro de téléphone."; return; }
   error.textContent = "";
-  const text = [
+  openWhatsApp([
     "Bonjour Ndamatou Fitness 👋",
     `Je m'appelle ${nom} (${tel}).`,
     `Je suis intéressé·e par : ${data.get("offre")}.`,
     data.get("message").trim(),
-  ].filter(Boolean).join("\n");
-  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+  ].filter(Boolean).join("\n"));
 });
 
 // Apparition au scroll
-const revealables = document.querySelectorAll(".section .container > *");
+const revealables = document.querySelectorAll(".section .container > *, .dark > *");
 revealables.forEach((el) => el.classList.add("reveal"));
 const io = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) { entry.target.classList.add("is-visible"); io.unobserve(entry.target); }
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.1 });
 revealables.forEach((el) => io.observe(el));
 
 document.getElementById("year").textContent = new Date().getFullYear();
