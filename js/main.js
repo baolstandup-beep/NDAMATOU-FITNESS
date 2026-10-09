@@ -35,6 +35,13 @@ if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   heroVideo.pause();
 }
 
+// Vidéo de visite : gros bouton lecture aux couleurs de la salle
+const visitVideo = document.getElementById("visitVideo");
+const visitPlayer = visitVideo.parentElement;
+visitPlayer.querySelector(".visit__play").addEventListener("click", () => visitVideo.play());
+visitVideo.addEventListener("play", () => visitPlayer.classList.add("is-playing"));
+visitVideo.addEventListener("ended", () => visitPlayer.classList.remove("is-playing"));
+
 // Carrousel
 const carousel = document.getElementById("carousel");
 document.querySelectorAll(".carousel__nav .round").forEach((btn) => {

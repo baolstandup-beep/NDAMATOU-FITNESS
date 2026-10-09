@@ -121,7 +121,10 @@ i { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spac
 .pill--ghost { background: transparent; color: var(--black); box-shadow: inset 0 0 0 1.5px var(--black); }
 .pill--ghost:hover { background: var(--black); color: var(--white); }
 .visit__player { position: relative; aspect-ratio: 9 / 16; max-height: 720px; border-radius: var(--r-lg); overflow: hidden; background: var(--black); box-shadow: 14px 14px 0 var(--yellow); }
-.visit__player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.visit__player video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: var(--black); }
+.visit__play { position: absolute; top: 50%; left: 50%; translate: -50% -50%; width: 76px; height: 76px; padding-left: 6px; border: 0; border-radius: 50%; background: var(--yellow); color: var(--black); font-size: 1.6rem; cursor: pointer; box-shadow: 0 0 0 10px rgba(254,241,73,.3); transition: transform .2s; }
+.visit__play:hover { transform: scale(1.08); }
+.visit__player.is-playing .visit__play { display: none; }
 
 /* Espaces */
 .spaces { display: grid; grid-template-columns: 1.2fr 1fr 1fr; grid-template-rows: repeat(2, 260px); gap: 1rem; }
