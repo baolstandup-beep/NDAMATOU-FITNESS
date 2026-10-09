@@ -2,3 +2,7 @@
 .vercel/
 .playwright-mcp/
 .DS_Store
+node_modules/
+out/
+reel/*
+!reel/tools/

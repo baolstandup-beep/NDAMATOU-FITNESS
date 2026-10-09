@@ -1,0 +1,24 @@
+{
+  "name": "scratch-2026-10-09-520cb4",
+  "version": "1.0.0",
+  "description": "Site statique (HTML/CSS/JS) de la salle Ndamatou Fitness, Touba. Charte : noir `#000005`, jaune `#FEF149`, Poppins + Anton.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baolstandup-beep/NDAMATOU-FITNESS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/baolstandup-beep/NDAMATOU-FITNESS/issues"
+  },
+  "homepage": "https://github.com/baolstandup-beep/NDAMATOU-FITNESS#readme",
+  "devDependencies": {
+    "playwright": "^1.64.0"
+  }
+}
