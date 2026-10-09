@@ -63,14 +63,6 @@ days.forEach((day) => {
 });
 renderDay(days[(new Date().getDay() + 6) % 7]); // lundi = 0
 
-// Tarifs mensuel / trimestriel
-const billing = document.getElementById("billing");
-billing.addEventListener("click", () => {
-  const quarterly = billing.getAttribute("aria-checked") !== "true";
-  billing.setAttribute("aria-checked", String(quarterly));
-  document.querySelectorAll("[data-m]").forEach((el) => { el.textContent = quarterly ? el.dataset.t : el.dataset.m; });
-});
-
 // Inscription événements -> WhatsApp
 const newsForm = document.getElementById("newsForm");
 const newsMsg = document.getElementById("newsMsg");
